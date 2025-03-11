@@ -1,0 +1,85 @@
+{{ define "title" -}}
+{{ .Site.Title }}
+{{- end }}
+{{ define "main" -}}
+<!-- Display your site content -->
+{{ .Content }}
+
+<!-- About Section - Modified to prevent duplicate footer -->
+<div class="about-section">
+  {{ with .Site.GetPage "page" "about" }}
+  <section class="page-section" id="{{ .Title | urlize }}">
+    <div class="container">
+      <h2 class="section-title">{{ .Title }}</h2>
+      <div class="page-content fade-in-element">
+        <div class="page-preview">
+          <!-- Show only the first paragraph initially -->
+          {{ (index (findRE "<p>.*?</p>" .Content 1) 0) | safeHTML }}
+        </div>
+        <div class="page-full" style="display: none;">
+          <!-- Show the full content -->
+          {{ .Content }}
+        </div>
+        <button id="about-toggle" class="read-more-btn">Read more</button>
+      </div>
+    </div>
+  </section>
+  <script src="/js/read-more.js"></script>
+  {{ end }}
+</div>
+
+<!-- Display events section -->
+<section class="events-section">
+  <h2 class="section-title">Upcoming Events</h2>
+  <div class="events-grid">
+    {{- $today := now }}
+    {{- $upcomingEvents := where (where .Site.RegularPages "Section" "events") "Date" "ge" $today }}
+    {{- range first 3 $upcomingEvents.ByDate }}
+    <div class="event-card fade-in-element">
+      {{ if .Params.image }}
+      <div class="event-image">
+        <a href="{{ .RelPermalink }}">
+          <img src="{{ .Params.image }}" alt="{{ .Title }}" />
+        </a>
+      </div>
+      {{ end }}
+      <div class="event-details">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <div class="event-meta">
+          {{ if .Params.venue }}
+          <div class="venue">
+            <strong>Venue:</strong> {{ .Params.venue }}
+          </div>
+          {{ end }}
+          {{ if .Params.date }}
+          <div class="date">
+            <strong>Date:</strong> {{ dateFormat "Mon, 02 Jan 2006" .Date }}
+            {{ if .Params.time }}
+            <span class="time">{{ .Params.time }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+          {{ if .Params.lineup }}
+          <div class="lineup">
+            <strong>Lineup:</strong> {{ .Params.lineup }}
+          </div>
+          {{ end }}
+        </div>
+        <a href="{{ .RelPermalink }}" class="read-more">Event details →</a>
+      </div>
+    </div>
+    {{- end }}
+    {{- if eq (len $upcomingEvents) 0 }}
+    <div class="no-events-message">
+      <p>No upcoming events scheduled at the moment. Check back soon!</p>
+    </div>
+    {{- end }}
+  </div>
+  <p class="view-all"><a href="/events/">View all events →</a></p>
+</section>
+
+<h1>Podcasts</h1>
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2022725636&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nentokerecordings" title="NËNTOKË-recordings" target="_blank" style="color: #cccccc; text-decoration: none;">NËNTOKË-recordings</a> · <a href="https://soundcloud.com/nentokerecordings/nentoke-podcast-023-anascole" title="Nëntokë Podcast 023| Anascole" target="_blank" style="color: #cccccc; text-decoration: none;">Nëntokë Podcast 023| Anascole</a></div>
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1990787343&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nentokerecordings" title="NËNTOKË-recordings" target="_blank" style="color: #cccccc; text-decoration: none;">NËNTOKË-recordings</a> · <a href="https://soundcloud.com/nentokerecordings/nentoke-podcast-022-dave" title="Nëntokë Podcast 022| Dave" target="_blank" style="color: #cccccc; text-decoration: none;">Nëntokë Podcast 022| Dave</a></div>
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1962001655&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nentokerecordings" title="NËNTOKË-recordings" target="_blank" style="color: #cccccc; text-decoration: none;">NËNTOKË-recordings</a> · <a href="https://soundcloud.com/nentokerecordings/nentoke-podcast-021-distortek" title="Nëntokë Podcast 021| Distortek" target="_blank" style="color: #cccccc; text-decoration: none;">Nëntokë Podcast 021| Distortek</a></div>
+{{- end }}

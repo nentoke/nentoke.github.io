@@ -1,0 +1,20 @@
+{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "main" }}
+<section class="page-section" id="{{ .Title | urlize }}">
+  <div class="container">
+    <h2 class="section-title">{{ .Title }}</h2>
+    <div class="page-content fade-in-element">
+      <div class="page-preview">
+        <!-- Show only the first paragraph initially -->
+        {{ (index (findRE "<p>.*?</p>" .Content 1) 0) | safeHTML }}
+      </div>
+      <div class="page-full" style="display: none;">
+        <!-- Show the full content -->
+        {{ .Content }}
+      </div>
+      <button id="page-toggle" class="read-more-btn">Read more</button>
+    </div>
+  </div>
+</section>
+<script src="/js/read-more.js"></script>
+{{ end }}

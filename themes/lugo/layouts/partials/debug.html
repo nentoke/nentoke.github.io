@@ -1,0 +1,25 @@
+<!-- Save this as layouts/partials/debug.html -->
+<div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin: 20px 0; font-family: monospace; white-space: pre-wrap;">
+    <h3>Hugo Debug Info</h3>
+    <p>Current time (now): {{ now.Format "2006-01-02 15:04:05 -0700 MST" }}</p>
+    <p>Pages in .Pages: {{ len .pages }}</p>
+    
+    <h4>All Pages:</h4>
+    {{ range .pages }}
+      <div style="border-bottom: 1px dashed #ccc; padding: 5px 0;">
+        <p>Title: {{ .Title }}</p>
+        <p>Path: {{ .Path }}</p>
+        <p>Date: {{ .Date.Format "2006-01-02 15:04:05 -0700 MST" }}</p>
+        <p>Is Type "events": {{ eq .Type "events" }}</p>
+        <p>Is Section "events": {{ eq .Section "events" }}</p>
+        <p>Is Date >= now: {{ ge .Date.Unix now.Unix }}</p>
+        <p>Date Unix: {{ .Date.Unix }} | Now Unix: {{ now.Unix }}</p>
+      </div>
+    {{ end }}
+  </div>
+  <div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin: 20px 0;">
+    <h3>Files in content/events folder:</h3>
+    {{ range readDir "content/events" }}
+      <p>{{ .Name }} - Size: {{ .Size }} bytes - Last modified: {{ .ModTime }}</p>
+    {{ end }}
+  </div>

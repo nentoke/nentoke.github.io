@@ -1,0 +1,12 @@
+{{ define "title" -}}
+Events
+{{- end }}
+{{ define "main" -}}
+{{ .Content }}
+
+<!-- Use the events-grid partial for upcoming events -->
+{{ partial "events-grid.html" (dict "pages" .Pages) }}
+
+<!-- Use the past-events-grid partial for past events -->
+{{ partial "past-events-grid.html" (dict "pages" .Pages) }}
+{{- end }}

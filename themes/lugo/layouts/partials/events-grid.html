@@ -1,0 +1,76 @@
+{{- $today := now }}
+{{- $hasUpcoming := false }}
+
+<h2 class="section-title">Upcoming Events</h2>
+<div class="events-grid">
+  {{- range .pages.ByDate }}
+    {{- if ge .Date $today }}
+      {{- $hasUpcoming = true }}
+      <div class="event-card">
+        {{ if .Params.image }}
+          <div class="event-image">
+            <a href="{{ .RelPermalink }}">
+              <img src="{{ .Params.image }}" alt="{{ .Title }}" />
+            </a>
+          </div>
+        {{ end }}
+        <div class="event-details">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <div class="event-meta">
+            {{ if .Params.venue }}
+              <div class="venue">
+                <strong>Venue:</strong> {{ .Params.venue }}
+                {{ if .Params.venue_address }}
+                  <div class="venue-address">{{ .Params.venue_address }}</div>
+                {{ end }}
+              </div>
+            {{ end }}
+            {{ if .Params.date }}
+              <div class="date">
+                <strong>Date:</strong> {{ dateFormat "Mon, 02 Jan 2006" .Date }}
+                {{ if .Params.time }}
+                  <span class="time">{{ .Params.time }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
+            {{ if .Params.lineup }}
+              <div class="lineup">
+                <strong>Lineup:</strong> {{ .Params.lineup }}
+              </div>
+            {{ end }}
+            {{ if .Params.genre }}
+              <div class="genre">
+                <strong>Genre:</strong> {{ .Params.genre }}
+              </div>
+            {{ end }}
+            {{ if .Params.cost }}
+              <div class="cost">
+                <strong>Cost:</strong> {{ .Params.cost }}
+              </div>
+            {{ end }}
+            {{ if .Params.age }}
+              <div class="age">
+                <strong>Min. age:</strong> {{ .Params.age }}
+              </div>
+            {{ end }}
+          </div>
+          {{ if .IsHome }}
+            <!-- Show less content on homepage -->
+            <a href="{{ .RelPermalink }}" class="read-more">Event details →</a>
+          {{ else }}
+            <!-- Show more content on events page -->
+            <div class="event-description">
+              {{ .Summary }}
+            </div>
+            <a href="{{ .RelPermalink }}" class="read-more">Event details →</a>
+          {{ end }}
+        </div>
+      </div>
+    {{- end }}
+  {{- end }}
+  {{- if not $hasUpcoming }}
+    <div class="no-events-message">
+      <p>No upcoming events scheduled at the moment. Check back soon!</p>
+    </div>
+  {{- end }}
+</div>

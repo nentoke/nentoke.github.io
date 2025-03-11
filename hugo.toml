@@ -1,4 +1,4 @@
 baseURL = 'https://nentoke.org/'
 languageCode = 'en-us'
 title = 'Nëntokë'
-theme = 'ananke'
+theme = 'lugo'
