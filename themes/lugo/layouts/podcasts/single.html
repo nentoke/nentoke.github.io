@@ -1,0 +1,49 @@
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<div class="podcast-single">
+  <div class="container">
+    <div class="title-nav-container">
+      <h1 class="podcast-title">{{ .Title }}</h1>
+      <a href="{{ "/podcasts/" | relURL }}" class="home-button">← All Podcasts</a>
+    </div>
+    
+    <div class="podcast-meta">
+      {{ if .Params.artist }}
+      <div class="artist"><strong>Artist:</strong> {{ .Params.artist }}</div>
+      {{ end }}
+      {{ if .Date }}
+      <div class="date"><strong>Released:</strong> {{ dateFormat "January 2, 2006" .Date }}</div>
+      {{ end }}
+      {{ if .Params.episode }}
+      <div class="episode"><strong>Episode:</strong> {{ .Params.episode }}</div>
+      {{ end }}
+    </div>
+    
+    <div class="podcast-player">
+      <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" 
+        src="https://w.soundcloud.com/player/?url={{ .Params.soundcloud_url }}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+      </iframe>
+      <div class="soundcloud-info">
+        <a href="{{ .Params.soundcloud_artist_url }}" target="_blank">{{ .Params.soundcloud_artist }}</a> · 
+        <a href="https://soundcloud.com/{{ .Params.soundcloud_artist | urlize }}/{{ .Title | urlize }}" target="_blank">{{ .Title }}</a>
+      </div>
+    </div>
+    
+    <div class="podcast-content">
+      {{ .Content }}
+    </div>
+    
+    <div class="podcast-navigation">
+      {{ with .PrevInSection }}
+      <a class="prev" href="{{ .RelPermalink }}">← Previous: {{ .Title }}</a>
+      {{ end }}
+      {{ with .NextInSection }}
+      <a class="next" href="{{ .RelPermalink }}">Next: {{ .Title }} →</a>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
