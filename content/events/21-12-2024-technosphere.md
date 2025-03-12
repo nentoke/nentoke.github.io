@@ -1,5 +1,6 @@
 ---
 title: "Technosphere Bash"
+type: "events"
 date: 2024-12-21
 venue: "Technosphere"
 venue_address: "Rruga e Elbasanit 8R9J+8W6, Tirana, Albania"

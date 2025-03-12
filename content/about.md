@@ -1,7 +1,6 @@
 ---
 title: "About"
-layout: "single"
-type: "page"
+layout: "about"
 ---
 
 # NËNTOKË

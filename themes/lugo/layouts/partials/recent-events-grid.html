@@ -1,0 +1,43 @@
+<section class="recent-events-section">
+    <h2 class="section-title">Recent Events</h2>
+    <div class="events-grid">
+      {{- $today := now }}
+      {{- $pastEvents := where (where .Site.RegularPages "Section" "events") "Date" "lt" $today }}
+      {{- range first 2 ($pastEvents.ByDate.Reverse) }}
+      <div class="event-card recent-event fade-in-element">
+        {{ if .Params.image }}
+        <div class="event-image">
+          <a href="{{ .RelPermalink }}">
+            <img src="{{ .Params.image }}" alt="{{ .Title }}" />
+          </a>
+        </div>
+        {{ end }}
+        <div class="event-details">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <div class="event-meta">
+            {{ if .Params.venue }}
+            <div class="venue">
+              <strong>Venue:</strong> {{ .Params.venue }}
+            </div>
+            {{ end }}
+            <!-- Date removed and replaced with "past event" badge -->
+            <div class="past-event-indicator">
+              <span class="past-badge">Past Event</span>
+            </div>
+            {{ if .Params.lineup }}
+            <div class="lineup">
+              <strong>Lineup:</strong> {{ .Params.lineup }}
+            </div>
+            {{ end }}
+          </div>
+          <a href="{{ .RelPermalink }}" class="read-more">Event details →</a>
+        </div>
+      </div>
+      {{- end }}
+      {{- if eq (len $pastEvents) 0 }}
+      <div class="no-events-message">
+        <p>No past events to display.</p>
+      </div>
+      {{- end }}
+    </div>
+  </section>

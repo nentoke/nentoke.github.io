@@ -1,45 +1,48 @@
 {{- $today := now }}
 {{- $hasPast := false }}
-<h2 class="section-title past-events-title">Past Events</h2>
-<div class="events-grid">
- {{- range .pages.ByDate.Reverse }}
- {{- if lt .Date $today }}
- {{- $hasPast = true }}
-<div class="event-card past-event">
- {{ if .Params.image }}
-<div class="event-image past-event-image">
-<a href="{{ .RelPermalink }}">
-<img src="{{ .Params.image }}" alt="{{ .Title }}" />
-</a>
-</div>
- {{ end }}
-<div class="event-details">
-<h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-<div class="event-meta">
- {{ if .Params.venue }}
-<div class="venue">
-<strong>Venue:</strong> {{ .Params.venue }}
-</div>
- {{ end }}
- {{ if .Params.date }}
-<div class="date">
-<strong>Date:</strong> {{ dateFormat "Mon, 02 Jan 2006" .Date }}
-</div>
- {{ end }}
- {{ if .Params.lineup }}
-<div class="lineup">
-<strong>Lineup:</strong> {{ .Params.lineup }}
-</div>
- {{ end }}
-</div>
-<a href="{{ .RelPermalink }}" class="read-more">View event →</a>
-</div>
-</div>
- {{- end }}
- {{- end }}
- {{- if not $hasPast }}
-<div class="no-events-message">
-<p>No past events to display.</p>
-</div>
- {{- end }}
-</div>
+{{- $limit := .limit | default 100 }}
+
+<section class="past-events-section">
+  <h2 class="section-title past-events-title">Past Events</h2>
+  <div class="events-grid">
+    {{- $pastEvents := where .pages "Date" "lt" $today }}
+    {{- range first $limit $pastEvents.ByDate.Reverse }}
+      {{- $hasPast = true }}
+      <div class="event-card past-event">
+        {{ if .Params.image }}
+        <div class="event-image past-event-image">
+          <a href="{{ .RelPermalink }}">
+            <img src="{{ .Params.image }}" alt="{{ .Title }}" />
+          </a>
+        </div>
+        {{ end }}
+        <div class="event-details">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <div class="event-meta">
+            {{ if .Params.venue }}
+            <div class="venue">
+              <strong>Venue:</strong> {{ .Params.venue }}
+            </div>
+            {{ end }}
+            {{ if .Params.date }}
+            <div class="date">
+              <strong>Date:</strong> {{ dateFormat "Mon, 02 Jan 2006" .Date }}
+            </div>
+            {{ end }}
+            {{ if .Params.lineup }}
+            <div class="lineup">
+              <strong>Lineup:</strong> {{ .Params.lineup }}
+            </div>
+            {{ end }}
+          </div>
+          <a href="{{ .RelPermalink }}" class="read-more">View event →</a>
+        </div>
+      </div>
+    {{- end }}
+    {{- if not $hasPast }}
+    <div class="no-events-message">
+      <p>No past events to display.</p>
+    </div>
+    {{- end }}
+  </div>
+</section>
