@@ -1,18 +1,43 @@
 /* Base Dark Theme */
-body {
+:root {
+	--container-padding: 20px;
+	--card-gap: 20px;
+	--border-radius: 8px;
+	--box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	--dark-color: #111;
+	--primary-color: #66aaff;
+	--secondary-color: #fff;
+	--accent-color: #333;
+  }
+  
+  body {
 	font-family: sans-serif;
 	background: #000000;
 	color: #ccc;
+	margin: 0;
+	padding: 0;
+	line-height: 1.6;
   }
   
   main {
 	max-width: 800px;
 	margin: auto;
-	padding: 0 15px;
+	padding: 0 var(--container-padding);
+	box-sizing: border-box;
+  }
+  
+  .container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 var(--container-padding);
+	box-sizing: border-box;
   }
   
   img {
 	max-width: 100%;
+	height: auto;
+	display: block;
   }
   
   header h1 {
@@ -36,6 +61,21 @@ body {
 	margin-top: 2em;
 	padding: 1em 0;
 	border-top: 1px solid #222;
+	width: 100%;
+  }
+  
+  footer img, 
+  footer .footer-logo {
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+  }
+  
+  .footer-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
   }
   
   /* Events Grid Styling */
@@ -52,6 +92,10 @@ body {
 	overflow: hidden;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	background: #111;
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
   }
   
   .event-card:hover {
@@ -59,10 +103,21 @@ body {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   }
   
+  /* Make the entire card clickable */
+  .card-link {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+  }
+  
   .event-image {
 	width: 100%;
 	height: 180px;
 	overflow: hidden;
+	position: relative;
   }
   
   .event-image img {
@@ -72,12 +127,15 @@ body {
 	transition: transform 0.3s ease;
   }
   
-  .event-image img:hover {
+  .event-card:hover .event-image img {
 	transform: scale(1.05);
   }
   
   .event-details {
 	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
   }
   
   .event-details h2,
@@ -85,6 +143,15 @@ body {
 	margin-top: 0;
 	margin-bottom: 1rem;
 	color: #fff;
+	position: relative;
+	z-index: 2;
+  }
+  
+  .event-details h3 a {
+	color: inherit;
+	text-decoration: none;
+	position: relative;
+	z-index: 2;
   }
   
   .event-meta {
@@ -106,10 +173,12 @@ body {
   
   .read-more {
 	display: inline-block;
-	margin-top: 0.5rem;
+	margin-top: auto;
 	color: #66aaff;
 	text-decoration: none;
 	font-weight: bold;
+	position: relative;
+	z-index: 2;
   }
   
   .read-more:hover {
@@ -117,14 +186,17 @@ body {
 	color: #99ccff;
   }
   
-  .events-section {
+  .events-section, 
+  .recent-events-section, 
+  .past-events-section {
 	margin: 3rem 0;
   }
   
-  .events-section h2 {
-	margin-bottom: 2rem;
+  .section-title {
+	margin: 3rem 0 2rem;
 	text-align: center;
 	color: #fff;
+	font-size: 1.8rem;
   }
   
   .view-all {
@@ -219,13 +291,6 @@ body {
 	text-decoration: none;
   }
   
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-	.event-info {
-	  grid-template-columns: 1fr;
-	}
-  }
-  
   /* For TAGLIST.HTML */
   .taglist {
 	text-align: center;
@@ -259,15 +324,8 @@ body {
   #nextart, #prevart {
 	max-width: 33%;
   }
-
-/* Past & Upcoming Events Styling */
-.section-title {
-	margin: 3rem 0 2rem;
-	text-align: center;
-	color: #fff;
-	font-size: 1.8rem;
-  }
   
+  /* Past & Upcoming Events Styling */
   .past-events-title {
 	margin-top: 5rem;
   }
@@ -347,10 +405,6 @@ body {
 	margin-bottom: 2rem;
   }
   
-  .event-image {
-	position: relative;
-  }
-  
   .no-events-message {
 	grid-column: 1 / -1;
 	text-align: center;
@@ -361,7 +415,7 @@ body {
   }
   
   /* About Page Styles */
-.about-page {
+  .about-page {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 2rem;
@@ -441,15 +495,8 @@ body {
 	font-weight: bold;
   }
   
-  /* Responsive styles */
-  @media (max-width: 768px) {
-	.about-page {
-	  padding: 1.5rem;
-	}
-  }
-
   /* Navigation Styles */
-.main-nav {
+  .main-nav {
 	background-color: var(--dark-color);
 	padding: 0;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -506,10 +553,8 @@ body {
 	color: var(--accent-color);
   }
   
-
   /* Styling for the Read More button */
-/* Styling for the Read More button */
-.read-more-btn {
+  .read-more-btn {
 	display: block;
 	background-color: #333;
 	color: #fff;
@@ -539,7 +584,36 @@ body {
   
   /* Add a subtle animation when transitioning content */
   .fade-in-element {
-	transition: opacity 0.4s ease;
+	opacity: 0;
+	transform: translateY(20px);
+	animation: fadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+	to {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+  
+  /* Add delay to stagger animations */
+  .events-grid .event-card:nth-child(2) {
+	animation-delay: 0.1s;
+  }
+  
+  .events-grid .event-card:nth-child(3) {
+	animation-delay: 0.2s;
+  }
+  
+  /* Past event badge */
+  .past-badge {
+	display: inline-block;
+	padding: 0.25rem 0.5rem;
+	background-color: #333;
+	border-radius: 4px;
+	font-size: 0.8rem;
+	font-weight: 500;
+	color: #fff;
   }
   
   /* Style for the page preview section */
@@ -551,7 +625,8 @@ body {
   .page-content {
 	margin-bottom: 40px;
   }
-
+  
+  /* SoundCloud Styling */
   .soundcloud-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -560,66 +635,81 @@ body {
   }
   
   .soundcloud-item {
-	background: #f8f8f8;
+	background: #111;
 	border-radius: 8px;
 	overflow: hidden;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	padding: 15px;
   }
   
   .soundcloud-item:hover {
 	transform: translateY(-5px);
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   }
   
-  @media (max-width: 768px) {
-	.soundcloud-grid {
-	  grid-template-columns: 1fr;
-	  gap: 20px;
-	}
+  /* Responsive SoundCloud containers */
+  .soundcloud-container {
+	position: relative;
+	width: 100%;
+	padding-bottom: 162px; /* Aspect ratio for SoundCloud players */
+	margin-bottom: 1.5rem;
+	overflow: hidden;
   }
   
-  /* Style the view all events button that comes after */
-  .view-all {
-	text-align: center;
-	margin: 2rem 0 4rem;
+  .soundcloud-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
   }
-
+  
+  .soundcloud-info {
+	font-size: 0.75rem;
+	margin-top: 0.25rem;
+	color: #777;
+	line-height: 1.4;
+	white-space: normal; /* Override the nowrap setting */
+	overflow: visible; /* Allow text to flow naturally */
+  }
+  
   .title-nav-container {
-	  display: flex;
-	  align-items: center;
-	  justify-content: space-between;
-	  margin-bottom: 1rem;
-	}
-	
-	.event-title {
-	  margin: 0;
-	}
-	
-	.home-button {
-	  display: inline-block;
-	  padding: 0.5rem 1rem;
-	  background-color: #333;
-	  color: white;
-	  text-decoration: none;
-	  border-radius: 4px;
-	  font-weight: bold;
-	}
-	
-	.home-button:hover {
-	  background-color: #555;
-	}
-
-	.about-section {
-		position: relative;
-		padding: 4rem 0;
-		overflow: hidden;
-		background-color: #000; /* Black background base */
-	}
-	
-	/* Background image with subtle parallax effect */
-	.about-section::before {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+  }
+  
+  .event-title {
+	margin: 0;
+  }
+  
+  .home-button {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	background-color: #333;
+	color: white;
+	text-decoration: none;
+	border-radius: 4px;
+	font-weight: bold;
+  }
+  
+  .home-button:hover {
+	background-color: #555;
+  }
+  
+  /* About Section Styling */
+  .about-section {
+	position: relative;
+	padding: 4rem 0;
+	overflow: hidden;
+	background-color: #000; /* Black background base */
+  }
+  
+  /* Background image with subtle parallax effect */
+  .about-section::before {
 	content: "";
 	position: absolute;
 	top: -20px; /* Extend slightly beyond the container */
@@ -635,33 +725,33 @@ body {
 	/* Fade effect from edges using box-shadow inset */
 	box-shadow: inset 0 0 150px 50px #000;
 	opacity: 0.8;
-	}
-	
-	/* Ensure content appears above the background */
-	.about-section .container {
+  }
+  
+  /* Ensure content appears above the background */
+  .about-section .container {
 	position: relative;
 	z-index: 2;
 	max-width: 90%;
 	margin: 0 auto;
-	}
-	
-	/* Make text more visible against background */
-	.about-section .section-title {
+  }
+  
+  /* Make text more visible against background */
+  .about-section .section-title {
 	color: #fff;
 	font-size: 2.5rem;
 	margin-bottom: 1.5rem;
 	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-	}
-	
-	.about-section .page-content {
+  }
+  
+  .about-section .page-content {
 	color: #fff;
 	font-size: 1.1rem;
 	line-height: 1.7;
 	text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-	}
-	
-	/* Fix for 'Read more' button to ensure it's visible */
-	.about-section .read-more-btn {
+  }
+  
+  /* Fix for 'Read more' button to ensure it's visible */
+  .about-section .read-more-btn {
 	background-color: rgba(255, 255, 255, 0.2);
 	color: #fff;
 	border: 1px solid #fff;
@@ -669,37 +759,291 @@ body {
 	cursor: pointer;
 	margin-top: 1rem;
 	transition: all 0.3s ease;
-	}
-	
-	.about-section .read-more-btn:hover {
+  }
+  
+  .about-section .read-more-btn:hover {
 	background-color: rgba(255, 255, 255, 0.4);
-	}
-	
-	/* Fix for ensuring text fits properly when expanded */
-	.about-section .page-full {
+  }
+  
+  /* Fix for ensuring text fits properly when expanded */
+  .about-section .page-full {
 	width: 100%;
 	overflow: visible;
+  }
+  
+  /* Podcasts Section */
+  .podcasts-section {
+	margin: 4rem 0;
+  }
+  
+  .podcasts-section .section-title {
+	margin-bottom: 2rem;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu-toggle {
+	display: none;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 1.5rem;
+	cursor: pointer;
+	padding: 0.5rem;
+  }
+  
+  /* RESPONSIVE STYLES */
+  
+  /* Medium screens (tablets) */
+  @media (max-width: 1024px) {
+	.events-grid {
+	  grid-template-columns: repeat(2, 1fr);
+	  gap: 1.5rem;
+	}
+  
+	.soundcloud-grid {
+	  grid-template-columns: repeat(2, 1fr);
 	}
 	
-	/* Add responsive adjustments for smaller screens */
-	@media (max-width: 768px) {
-	.about-section {
-		padding: 3rem 0;
+	.nav-container {
+	  padding: 0.5rem 1rem;
 	}
 	
-	.about-section .container {
-		max-width: 95%;
+	.nav-link {
+	  padding: 0.8rem;
+	  font-size: 0.8rem;
 	}
 	
 	.about-section .section-title {
-		font-size: 2rem;
+	  font-size: 2.2rem;
+	}
+  }
+  
+  /* Small screens (mobile) */
+  @media (max-width: 768px) {
+	:root {
+	  --container-padding: 15px;
+	  --card-gap: 15px;
 	}
 	
-	/* Make background image fixed position for mobile */
-	.about-section::before {
-		background-attachment: scroll;
-		box-shadow: inset 0 0 100px 30px #000;
+	main, .container {
+	  padding: 0 var(--container-padding);
 	}
-
-	  
-}
+	
+	.events-grid {
+	  grid-template-columns: 1fr;
+	}
+	
+	.soundcloud-grid {
+	  grid-template-columns: 1fr;
+	  gap: 20px;
+	}
+	
+	.event-info {
+	  grid-template-columns: 1fr;
+	}
+	
+	/* Make navigation responsive */
+	.nav-container {
+	  flex-wrap: wrap;
+	}
+	
+	.mobile-menu-toggle {
+	  display: block;
+	}
+	
+	.nav-menu {
+	  display: none;
+	  width: 100%;
+	  flex-direction: column;
+	  padding-bottom: 1rem;
+	}
+	
+	.nav-menu.show {
+	  display: flex;
+	}
+	
+	.nav-item {
+	  margin: 0;
+	  width: 100%;
+	  text-align: center;
+	}
+	
+	.nav-link {
+	  padding: 0.8rem 1rem;
+	  width: 100%;
+	  display: block;
+	}
+	
+	/* Adjust titles and spacing */
+	.section-title {
+	  font-size: 1.5rem;
+	  margin: 2rem 0 1.5rem;
+	}
+	
+	.about-section {
+	  padding: 3rem 0;
+	}
+	
+	.about-section .container {
+	  max-width: 95%;
+	}
+	
+	.about-section .section-title {
+	  font-size: 1.8rem;
+	}
+	
+	.about-section::before {
+	  background-attachment: scroll;
+	  box-shadow: inset 0 0 100px 30px #000;
+	}
+	
+	/* Fix for navigation and layout */
+	.title-nav-container {
+	  flex-direction: column;
+	  align-items: flex-start;
+	  gap: 1rem;
+	}
+	
+	.home-button {
+	  align-self: flex-start;
+	}
+	
+	/* Ensure footer content stays centered on mobile */
+	footer img,
+	footer .footer-logo,
+	footer a {
+	  margin: 0 auto;
+	  text-align: center;
+	}
+	
+	/* Adjust event cards for better mobile experience */
+	.event-card {
+	  margin-bottom: 1.5rem;
+	}
+	
+	.event-details {
+	  padding: 1rem;
+	}
+	
+	.event-details h3 {
+	  font-size: 1.2rem;
+	}
+	
+	/* Fix SoundCloud embed spacing on mobile */
+	.soundcloud-container {
+	  margin-bottom: 1rem;
+	}
+	
+	/* Fix pagination on mobile */
+	#nextprev {
+	  display: flex;
+	  flex-direction: column;
+	  gap: 1rem;
+	}
+	
+	#prevart, #nextart {
+	  float: none;
+	  max-width: 100%;
+	  text-align: center;
+	}
+  }
+  
+  /* Very small screens */
+  @media (max-width: 480px) {
+	.event-image {
+	  height: 160px;
+	}
+	
+	.about-section .section-title {
+	  font-size: 1.5rem;
+	}
+	
+	.about-section .page-content {
+	  font-size: 1rem;
+	}
+	
+	.event-meta {
+	  font-size: 0.85rem;
+	}
+	
+	.read-more-btn {
+	  font-size: 14px;
+	  padding: 8px 16px;
+	}
+  }
+  
+  /* Mobile Menu JavaScript support */
+  .js-enabled .nav-menu {
+	display: none;
+  }
+  
+  .js-enabled .nav-menu.show {
+	display: flex;
+  }
+  
+  /* Hamburger menu icon */
+  .hamburger {
+	width: 30px;
+	height: 20px;
+	position: relative;
+	margin: 0;
+	transform: rotate(0deg);
+	transition: .5s ease-in-out;
+	cursor: pointer;
+  }
+  
+  .hamburger span {
+	display: block;
+	position: absolute;
+	height: 3px;
+	width: 100%;
+	background: white;
+	border-radius: 9px;
+	opacity: 1;
+	left: 0;
+	transform: rotate(0deg);
+	transition: .25s ease-in-out;
+  }
+  
+  .hamburger span:nth-child(1) {
+	top: 0px;
+  }
+  
+  .hamburger span:nth-child(2) {
+	top: 8px;
+  }
+  
+  .hamburger span:nth-child(3) {
+	top: 16px;
+  }
+  
+  .hamburger.open span:nth-child(1) {
+	top: 8px;
+	transform: rotate(135deg);
+  }
+  
+  .hamburger.open span:nth-child(2) {
+	opacity: 0;
+	left: -60px;
+  }
+  
+  .hamburger.open span:nth-child(3) {
+	top: 8px;
+	transform: rotate(-135deg);
+  }
+  
+  /* Fix for lazyloading images */
+  img[loading="lazy"] {
+	transition: opacity 0.3s;
+  }
+  
+  img[loading="lazy"][data-src] {
+	opacity: 0;
+  }
+  
+  img[loading="lazy"].lazyloaded {
+	opacity: 1;
+  }
+  
+  /* Add viewport meta tag to your <head> section */
+  /* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
