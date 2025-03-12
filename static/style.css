@@ -1056,3 +1056,151 @@
   
   /* Add viewport meta tag to your <head> section */
   /* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
+
+/* Podcast styling */
+  .podcasts-section {
+	margin: 4rem 0;
+  }
+  
+  .podcasts-vertical {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin: 2rem 0;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+  }
+  
+  .podcast-card {
+	border: 1px solid #222; /* Darker border */
+	border-radius: 8px;
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	background: #111; /* Dark background */
+  }
+  
+  .podcast-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  }
+  
+  .podcast-details {
+	padding: 1.5rem;
+  }
+  
+  .podcast-details h3 {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	color: #fff; /* White text for headings */
+  }
+  
+  .podcast-details h3 a {
+	color: #fff; /* White text for links */
+	text-decoration: none;
+  }
+  
+  .podcast-details h3 a:hover {
+	color: #66aaff; /* Your primary link hover color */
+  }
+  
+  .podcast-meta {
+	margin: 0.5rem 0 1rem;
+	font-size: 0.9rem;
+	color: #aaa; /* Lighter gray for better visibility */
+  }
+  
+  .podcast-meta strong {
+	color: #fff; /* White text for emphasis */
+  }
+  
+  .podcast-embed {
+	margin: 1rem 0;
+  }
+  
+  .soundcloud-info {
+	font-size: 10px;
+	color: #777; /* Slightly brighter for readability */
+	margin-top: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+	font-weight: 100;
+  }
+  
+  .soundcloud-info a {
+	color: #999; /* Brighter color for links */
+	text-decoration: none;
+  }
+  
+  .soundcloud-info a:hover {
+	color: #fff; /* White on hover */
+	text-decoration: underline;
+  }
+  
+  /* Single podcast page styling */
+  .podcast-single {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 2rem 0;
+  }
+  
+  .podcast-title {
+	margin-bottom: 1rem;
+	color: #fff; /* White text */
+  }
+  
+  .podcast-single .podcast-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-bottom: 2rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #333; /* Darker border */
+	color: #aaa; /* Light gray text */
+  }
+  
+  .podcast-single .podcast-player {
+	margin: 2rem 0;
+  }
+  
+  .podcast-content {
+	margin: 2rem 0;
+	line-height: 1.6;
+	color: #ccc; /* Light gray text */
+  }
+  
+  .podcast-navigation {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 3rem;
+	padding-top: 1rem;
+	border-top: 1px solid #333; /* Darker border */
+  }
+  
+  .podcast-navigation a {
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	background-color: #222; /* Dark background */
+	color: #fff; /* White text */
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+  }
+  
+  .podcast-navigation a:hover {
+	background-color: #333; /* Slightly lighter on hover */
+  }
+  
+  /* Make the podcasts section responsive */
+  @media (max-width: 768px) {
+	.podcasts-vertical {
+	  width: 100%;
+	  padding: 0 1rem;
+	}
+	
+	.podcast-navigation {
+	  flex-direction: column;
+	  gap: 1rem;
+	}
+  }

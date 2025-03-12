@@ -1,0 +1,24 @@
+{{ define "title" }}
+Podcasts | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<section class="podcasts-section">
+  <div class="container">
+    <h1 class="section-title">Podcasts</h1>
+    
+    <div class="podcasts-vertical">
+      {{ $podcasts := where .Site.RegularPages "Section" "podcasts" }}
+      {{ if eq (len $podcasts) 0 }}
+        <div class="no-events-message">
+          <p>No podcasts available at the moment. Check back soon!</p>
+        </div>
+      {{ else }}
+        {{ range $podcasts.ByDate.Reverse }}
+          {{ partial "podcast-card.html" . }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
