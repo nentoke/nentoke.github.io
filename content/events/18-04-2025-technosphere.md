@@ -2,6 +2,7 @@
 title: "Nentoke"
 type: "events"
 date: 2025-04-18
+slug: "18-04-2025-technosphere"
 venue: "Technosphere"
 venue_address: "Rruga e Elbasanit 8R9J+8W6, Tirana, Albania"
 time: "23:00 - 06:00"
