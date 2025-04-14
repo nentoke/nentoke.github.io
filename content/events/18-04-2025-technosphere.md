@@ -5,7 +5,7 @@ date: 2025-04-18
 venue: "Technosphere"
 venue_address: "Rruga e Elbasanit 8R9J+8W6, Tirana, Albania"
 time: "23:00 - 06:00"
-lineup: "zerocase, Deus Ex Machina, 010010, DANI"
+lineup: "zerocase, Deus Ex Machina, DANI"
 genre: "Techno, Electro, Jungle, Electronica"
 cost: "5"
 age: "18+"
