@@ -11,3 +11,4 @@ cost: "5"
 age: "18+"
 image: "/images/events/9c1a757722687eb3db4da984ef12f1ab769b4b30.jpg"
 ---
+We welcome you to our next NENTOKE event!
