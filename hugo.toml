@@ -2,3 +2,6 @@ baseURL = 'https://nentoke.org/'
 languageCode = 'en-us'
 title = 'Nëntokë'
 theme = 'lugo'
+
+[permalinks]
+  events = "/events/:filename/"
