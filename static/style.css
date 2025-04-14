@@ -1204,3 +1204,47 @@
 	  gap: 1rem;
 	}
   }
+
+/* Bandcamp Grid Section */
+.bandcamp-section {
+	margin: 3rem 0;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 1rem;
+  }
+  
+  .bandcamp-grid {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 2.5rem;
+	margin-top: 2rem;
+	margin-bottom: 2.5rem;
+  }
+  
+  .bandcamp-item {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	border-radius: 5px;
+	overflow: hidden;
+	background-color: #222;
+  }
+  
+  .bandcamp-item:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Always 2 per row on medium and large screens */
+  @media (min-width: 768px) {
+	.bandcamp-grid {
+	  grid-template-columns: repeat(2, 1fr);
+	}
+  }
+  
+  /* For smaller screens, adjust the height */
+  @media (max-width: 767px) {
+	.bandcamp-item iframe {
+	  height: 450px;
+	}
+  }
