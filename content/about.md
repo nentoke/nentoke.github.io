@@ -5,7 +5,7 @@ layout: "about"
 
 # NËNTOKË
 
-NËNTOKË is an underground movement established in 2023, pioneering a new kind of free cultural experience in our local scene. At our core, we embody what free culture truly means - a community-driven platform where music, art, and authentic connection flourish without boundaries.
+NËNTOKË is an underground movement established in 2020, pioneering a new kind of free cultural experience in our local scene. At our core, we embody what free culture truly means - a community-driven platform where music, art, and authentic connection flourish without boundaries.
 
 ## Our Spirit
 
