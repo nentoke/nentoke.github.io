@@ -31,6 +31,12 @@
 <!-- Display upcoming events section -->
 <section class="events-section">
   <h2 class="section-title">Upcoming Events</h2>
+  
+  <!-- Holding hands image as full opacity element -->
+  <div class="holding-hands-section" style="text-align: center; margin: 2rem 0;">
+    <img src="/images/holdinghands.png" alt="Holding Hands" class="holding-hands-image" style="max-width: 100%; height: auto; opacity: 0.9" />
+  </div>
+  
   <div class="events-grid">
     {{- $today := now }}
     {{- $upcomingEvents := where (where .Site.RegularPages "Section" "events") "Date" "ge" $today }}
