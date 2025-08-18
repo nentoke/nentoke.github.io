@@ -5,6 +5,35 @@
 <!-- Display your site content -->
 {{ .Content }}
 
+
+<!-- Album Banner Section -->
+<section class="album-banner">
+  <div class="caution-tape">
+  </div>
+  
+  <div class="container">
+    <div class="album-content">
+      <div class="album-cover-container">
+        <div class="new-release-badge">NEW RELEASE</div>
+        <a href="https://nentoke.bandcamp.com/album/various-artists-nntk001">
+          <img src="/images/a0227647999_10.jpg" alt="VA NNTK001" class="album-cover">
+          <div class="hover-text">Listen Now</div>
+        </a>
+      </div>
+      
+      <div class="album-info">
+        <h2>NNTK001 - VA</h2>
+        <p class="album-description">
+          Marking a historic moment in Albanian electronic music, this is the first-ever Various Artists made entirely by Albanian artists, released by our label. This groundbreaking release gathers 12 forward-thinking producers from across the country, bringing together both pioneers of the scene and fresh new talent, side by side.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="caution-tape">
+  </div>
+</section>
+
 <!-- About Section -->
 <div class="about-section">
   {{ with .Site.GetPage "page" "about" }}

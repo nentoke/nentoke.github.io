@@ -1270,3 +1270,154 @@
 	  height: 450px;
 	}
   }
+
+/* Album Banner Styles */
+.album-banner {
+  padding: 2rem 0;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.caution-tape {
+  background: repeating-linear-gradient(
+    45deg,
+    #d9a142 0px,
+    #d9a142 20px,
+    #000 20px,
+    #000 40px
+  );
+  height: 40px;
+  width: 100%;
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.caution-text {
+  display: none;
+}
+
+.album-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.album-cover-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.album-cover {
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: block;
+}
+
+.album-cover:hover {
+  transform: scale(1.05);
+  filter: brightness(0.7);
+}
+
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.album-cover-container:hover .hover-text {
+  opacity: 1;
+}
+
+.new-release-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #d9a142;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  transform: rotate(15deg);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 3;
+}
+
+.album-info {
+  flex-grow: 1;
+  color: #fff;
+}
+
+.album-info h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.album-info h3 {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.album-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .album-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .album-cover {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .album-info h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .album-cover {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .caution-text {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  
+  .album-info h2 {
+    font-size: 1.3rem;
+  }
+}
