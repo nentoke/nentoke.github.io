@@ -1,7 +1,7 @@
 ---
 title: "Nentoke FREE PARTY"
 type: "events"
-date: 2025-02-19
+date: 2025-09-19
 venue: "Secret Location"
 venue_address: "-"
 lineup: "Local Artists & Crew"
